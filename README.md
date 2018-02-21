@@ -1,7 +1,5 @@
 # Blockchain
 
-Simple Blockchain made with Python
-
 Blockchain made with Java
 
 
