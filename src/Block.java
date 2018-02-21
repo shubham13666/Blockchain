@@ -15,7 +15,8 @@ public class Block
         this.hash = calculateHash();
     }
 
-    public String calculateHash() {
+    public String calculateHash() 
+    {
         String calculatedhash = StringToHash.StringToSHA256(
                 previousHash +
                         Long.toString(timeStamp) +
