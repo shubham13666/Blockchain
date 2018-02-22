@@ -7,14 +7,15 @@ public class Block{
     private long timeStamp;
     private int nonce;
 
-    public Block(String data,String prevHash)
+    public Block(String data,String previousHash)
     {
         this.data = data;
-        this.previousHash = prevHash;
+        this.previousHash = previousHash;
         this.timeStamp = new Date().getTime();
         this.hash = calculateHash();
     }
 
+    //calculate hash
     public String calculateHash()
     {
         String calculatedHash = StringToHash.StringToSHA256(previousHash +
@@ -24,6 +25,7 @@ public class Block{
         return calculatedHash;
     }
 
+    //to mine block
     public void miningBlock(int difficulty)
     {
         String target = new String(new char[difficulty]).replace('\0', '0'); //Create a string with difficulty * "0"
