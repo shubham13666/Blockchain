@@ -1,29 +1,41 @@
 import java.util.Date;
 
-public class Block
-{
-    public String hash,previousHash;
+ public class Block
+ {
+    public String hash;
+    public String previousHash;
     private String data;
     private long timeStamp;
+    private int nonce;
 
-    //Block Constructor
-    public Block(String data, String previousHash)
+    public Block(String data,String previousHash)
     {
-        this.data=data;
-        this.previousHash=previousHash;
-        this.timeStamp=new Date().getTime();
+        this.data = data;
+        this.previousHash = previousHash;
+        this.timeStamp = new Date().getTime();
         this.hash = calculateHash();
     }
 
-    public String calculateHash() 
+    //calculate hash
+    public String calculateHash()
     {
-        String calculatedhash = StringToHash.StringToSHA256(
-                previousHash +
-                        Long.toString(timeStamp) +
-                        data
-        );
-        return calculatedhash;
+        String calculatedHash = StringToHash.StringToSHA256(previousHash +
+                Long.toString(timeStamp) +
+                Integer.toString(nonce) +
+                data );
+        return calculatedHash;
     }
 
-
+    //to mine block
+    public void miningBlock(int difficulty)
+    {
+        String target = new String(new char[difficulty]).replace('\0', '0'); //Create a string with difficulty * "0"
+        while(!hash.substring( 0, difficulty).equals(target))
+        {
+            nonce ++;
+            hash = calculateHash();
+        }
+        System.out.println("Block Mined!!! : " + hash);
+    }
 }
+

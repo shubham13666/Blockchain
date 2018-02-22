@@ -19,12 +19,11 @@ public class StringToHash
                     hexString.append('0');
                 hexString.append(hex);
             }
-
+          
             return hexString.toString();
         }
         catch(Exception e) {
             throw new RuntimeException(e);
         }
     }
-
 }
